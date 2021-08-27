@@ -1,5 +1,6 @@
 ﻿using MeroKhata.Data;
 using MeroKhata.Dtos;
+using MeroKhata.Helpers;
 using MeroKhata.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace MeroKhata.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUserRepository _repository;
+        private readonly JwtService _jwtService;
 
-        public AuthController(IUserRepository repository)
+        public AuthController(IUserRepository repository, JwtService jwtService)
         {
             _repository = repository;
+            _jwtService = jwtService;
         }
 
         [HttpPost("register")]
@@ -52,7 +55,18 @@ namespace MeroKhata.Controllers
                     message = "Invalid Credential"
                 });
             }
-            return Ok(user);
+
+            var jwt = _jwtService.Generate(user.Id);
+
+            Response.Cookies.Append("jwt", jwt, new CookieOptions
+            {
+                HttpOnly = true
+            }) ;
+
+            return Ok(new
+            {
+                message = "success"
+            });
         }
     }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeroKhata.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20210827190120_CreateUsersTable")]
-    partial class CreateUsersTable
+    [Migration("20210827200051_CreateUserTable")]
+    partial class CreateUserTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace MeroKhata.Migrations
 
             modelBuilder.Entity("MeroKhata.Models.User", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -36,7 +36,7 @@ namespace MeroKhata.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique()

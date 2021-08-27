@@ -1,4 +1,6 @@
 ﻿using MeroKhata.Data;
+using MeroKhata.Dtos;
+using MeroKhata.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,9 +22,16 @@ namespace MeroKhata.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Hello()
+        public IActionResult Register(RegisterDto dto)
         {
-            return Ok("Success");
+            var user = new User
+            {
+                Name = dto.Name,
+                Email = dto.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+            };
+            
+            return Created("Success", _repository.Create(user));
         }
     }
 }

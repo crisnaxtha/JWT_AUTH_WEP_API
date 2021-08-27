@@ -20,7 +20,7 @@ namespace MeroKhata.Migrations
 
             modelBuilder.Entity("MeroKhata.Models.User", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -34,7 +34,7 @@ namespace MeroKhata.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique()

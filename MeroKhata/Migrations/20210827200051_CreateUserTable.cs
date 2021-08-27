@@ -2,7 +2,7 @@
 
 namespace MeroKhata.Migrations
 {
-    public partial class CreateUsersTable : Migration
+    public partial class CreateUserTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,7 +10,7 @@ namespace MeroKhata.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: true),
@@ -18,7 +18,7 @@ namespace MeroKhata.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.ID);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(

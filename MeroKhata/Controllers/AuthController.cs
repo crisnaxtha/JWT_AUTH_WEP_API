@@ -33,5 +33,26 @@ namespace MeroKhata.Controllers
             
             return Created("Success", _repository.Create(user));
         }
+
+        [HttpPost("Login")]
+        public IActionResult Login(LoginDto dto)
+        {
+            var user = _repository.GetByEmail(dto.Email);
+            if(user == null)
+            {
+                return BadRequest(new
+                {
+                    message = "Invalid Credential"
+                });
+            }
+            if(!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
+            {
+                return BadRequest(new
+                {
+                    message = "Invalid Credential"
+                });
+            }
+            return Ok(user);
+        }
     }
 }

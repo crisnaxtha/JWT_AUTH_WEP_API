@@ -10,5 +10,6 @@ namespace MeroKhata.Data
     {
         User Create(User user);
         User GetByEmail(string Email);
+        User GetById(int id);
     }
 }
